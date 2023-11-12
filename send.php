@@ -12,21 +12,39 @@ if(isset($_POST["send"])){
 	$mail->isSMTP();
 	$mail->Host = 'smtp.gmail.com';
 	$mail->SMTPAuth = true;
-	$mail->Username = 'slavadam2006@gmail.com';
-	$mail->Password = 'wwlokszrhdedbgef';
+	$mail->Username = 'adamovsvatoslav05@gmail.com';
+	$mail->Password = 'ofhhqwadlozhmrlt';
 	$mail->SMTPSecure = 'ssl';
 	$mail->Port = 465;
 
-	$mail->setFrom('slavadam2006@gmail.com');
+	$mail->setFrom('adamovsvatoslav05@gmail.com');
 
 	$mail->addAddress($_POST["email"]);
 
 		$mail->isHTML(true);
 
-		$mail->Subject = $_POST["subject"];
-		$mail->Body = $_POST["message"];
-
+		$mail->Subject = $_POST["form_subject"];
+	    $name = $_POST["Name"];
+	    $age = $_POST ["age"];
+	    $date = $_POST ["date"];
+		$mail->Body = "ФИО: $name
+		\nВозраст: $age
+		\n\nДата: $date";
+        
 		$mail->send();
+
+		foreach ($_POST as $key => $value){
+			if( $value !="" && $key 
+				!="Name" && $key 
+				!="age" && $key 
+				!="date"  )
+				$message .= "
+			".(($c= !$c)? ' <tr>':'<tr style="background-color: #f8f8f8;">')."
+			<td style='padding: 10px; border: #e9e9e9 1px solid;'><b>$key</b></td>
+			<td style='padding: 10px; border: #e9e9e9 1px solid;'><b>$value</tb></tr>
+			";
+};
+
 
 		echo
 		"
@@ -35,5 +53,5 @@ if(isset($_POST["send"])){
 		document.location.href='index.php';
 		</script>
 		";
-}
+};
  ?>
