@@ -1,12 +1,13 @@
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <style>
-    *{
+    *{+
       font-family: Arial, sans-serif;
     }
     form{
-      margin: 15px 5px;
+      margin: 15px 10px;
       width: 500px;
       font-size: 16px;
     }
@@ -17,6 +18,7 @@
       display: block;
       margin-bottom: 5px;
     }
+
     form input, form textarea{
       width: 100%;
       padding: 5px;
@@ -35,43 +37,51 @@
     form button:hover{
       background: green;
     }
+
   </style>
   <body>
+<div class="wrapper">
+  <div class="content">
     <form>
-      <h1>Send Data To WhatsApp</h1>
-      <label for="">Name</label>
+      <p>
+      <h1>Отправка сообщения в WhatsApp</h1>
+      
+ <label for="">Номер</label>
+      <input type="text" class="number">
+
+      <label for="">ФИО</label>
       <input type="text" class="name">
 
-      <label for="">Email</label>
+      <label for="">Дата</label>
       <input type="text" class="email">
 
-      <label for="">Country</label>
+      <label for="">Вакцина</label>
       <input type="text" class="country">
 
-      <label for="">Message</label>
-      <textarea class="message"></textarea>
-      <button type="button" onclick="sendwhatsapp();">Send Via WhatsApp</button>
+      <label for="">Где будет вакцинироваться: Хангаласская ЦРБ детская консультация </label>
+      
+      <button type="button" onclick="sendwhatsapp();">Отправить сообщение</button>
     </form>
 
     <script>
       function sendwhatsapp(){
-       var phonenumber = "+6285101556689";
-
+       var phonenumber = document.querySelector (".number").value;
        var name = document.querySelector(".name").value;
        var email = document.querySelector(".email").value;
        var country = document.querySelector(".country").value;
-       var message = document.querySelector(".message").value;
-
+       
        var url = "https://wa.me/" + phonenumber + "?text="
-       +"*Name :* "+name+"%0a"
-       +"*Email :* "+email+"%0a"
-       +"*Country:* "+country+"%0a"
-       +"*Message :* "+message
-       +"%0a%0a"
-       +"This is an example of send HTML form data to WhatsApp";
+       +"*ФИО :* "+name+"%0a"
+       +"*Дата :* "+email+"%0a"
+       +"*Вакцина:* "+country+"%0a"
+       
+       +"*Где будет вакцинироваться: Хангаласская ЦРБ детская консультация* "
+       +"%0a%0a";
+      
 
        window.open(url, '_blank').focus();
      }
+    
     </script>
   </body>
 </html>
